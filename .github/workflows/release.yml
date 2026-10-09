@@ -14,7 +14,7 @@ jobs:
   release-check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - run: rustup toolchain install stable --profile minimal && rustup default stable
       - run: scripts/release-check.sh "$GITHUB_REF_NAME"
 
@@ -26,7 +26,7 @@ jobs:
       contents: read
       id-token: write # for crates.io Trusted Publishing
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - run: rustup toolchain install stable --profile minimal && rustup default stable
       - uses: rust-lang/crates-io-auth-action@v1
         id: auth
