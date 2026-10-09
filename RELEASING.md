@@ -15,6 +15,7 @@ publishing, triggered by publishing a GitHub Release on a `vX.Y.Z` tag. The
 - Edit `version` in `Cargo.toml`.
 - In `CHANGELOG.md`, rename `## [Unreleased]` to `## [X.Y.Z] - YYYY-MM-DD` and
   add a fresh empty `## [Unreleased]` above it.
+- Run `cargo check`.
 - Open a PR titled `Release vX.Y.Z`. Merge it.
 - On GitHub: Releases -> Draft a new release.
   - Choose a tag: create `vX.Y.Z`, target `main`.
