@@ -1,0 +1,14 @@
+[package]
+name = "weak_borrow"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Sendable weak borrows of !Send types."
+license = "Apache-2.0"
+repository = "https://github.com/island-io/weak_borrow"
+readme = "README.md"
+keywords = ["send", "weak", "borrow", "ffi", "thread"]
+categories = ["concurrency", "rust-patterns"]
+include = ["src", "tests", "CHANGELOG.md", "LICENSE", "NOTICE"]
+
+[dependencies]
