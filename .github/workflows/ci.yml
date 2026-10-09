@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main, "release/**"]
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  stable:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: rustup toolchain install stable --profile minimal --component clippy,rustfmt && rustup default stable
+      - run: scripts/ci.sh
+
+  msrv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: rustup toolchain install 1.85 --profile minimal && rustup default 1.85
+      - run: scripts/ci.sh --no-lint
+
+  nightly:
+    runs-on: ubuntu-latest
+    continue-on-error: true # informational: never blocks PRs or releases
+    steps:
+      - uses: actions/checkout@v5
+      - run: rustup toolchain install nightly --profile minimal && rustup default nightly
+      - run: scripts/ci.sh --no-lint
+
+  miri:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - run: rustup toolchain install nightly --profile minimal --component miri
+      - run: scripts/miri.sh
